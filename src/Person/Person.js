@@ -13,7 +13,6 @@ const person = (props) => {
                 defaultValue={props.name}
             />
         </div>
-
     )
 }
 
