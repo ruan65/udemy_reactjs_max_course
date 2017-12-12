@@ -22,8 +22,6 @@ class App extends Component {
   }
   
   togglePersonsHandler = (event) => {
-  
-    console.log("show persons clicked......")
     
     persons.showPersons = !persons.showPersons
     
