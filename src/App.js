@@ -6,10 +6,10 @@ import Boss from './Person/Boss'
 
 const persons = {
   persons: [
-    {name: 'Zina', age: 34},
-    {name: 'Zinaida', age: 33},
-    {name: 'Zinatulla', age: 32},
-    {name: 'Zinacrone', age: 31}
+    {id: 'wsdwdewd1', name: 'Zina', age: 34},
+    {id: 'sdcsdcsd2', name: 'Zinaida', age: 33},
+    {id: 'dscdscs3', name: 'Zinatulla', age: 32},
+    {id: 'vfvedd4', name: 'Zinacrone', age: 31}
   ],
   showPersons: false
 }
@@ -29,9 +29,16 @@ class App extends Component {
   }
 
 
-  nameChangeHandler = (event) => {
+  nameChangeHandler = (event, id) => {
 
-    persons.persons[3].name = event.target.value
+    persons.persons.map(pr => {
+
+      if (pr.id === id) {
+
+        pr.name = event.target.value
+      }
+      return pr
+    })
 
     this.setState(persons)
   }
@@ -62,9 +69,9 @@ class App extends Component {
         this.state.persons.map((p, index) =>
 
           <Person
-            key={index.toString()}
+            key={p.id}
             name={p.name} age={p.age}
-            changed={this.nameChangeHandler}
+            changed={(event) => this.nameChangeHandler(event, p.id)}
             click={() => this.deletePersonHandler(index)}
           />
         )
