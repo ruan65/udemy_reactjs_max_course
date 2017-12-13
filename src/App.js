@@ -15,29 +15,36 @@ const persons = {
 }
 
 class App extends Component {
-  
+
   constructor(props) {
     super(props)
     this.state = persons
   }
-  
+
   togglePersonsHandler = (event) => {
-    
+
     persons.showPersons = !persons.showPersons
-    
+
     this.setState(persons)
   }
-  
-  
+
+
   nameChangeHandler = (event) => {
-    
+
     persons.persons[3].name = event.target.value
-    
+
     this.setState(persons)
   }
-  
+
+  deletePersonHandler = (index) => {
+
+    persons.persons.splice(index, 1)
+    this.setState(persons)
+
+  }
+
   render() {
-    
+
     const style = {
       backgroundColor: 'white',
       font: 'inherit',
@@ -45,40 +52,41 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     }
-    
+
     let persons = null
-    
+
     if (this.state.showPersons) {
 
       persons = <div>{
-        
-          this.state.persons.map((p, index) =>
 
-            <Person
-              key={index.toString()}
-              name={p.name} age={p.age}
-              changed={this.nameChangeHandler}
-            />
-          )
-        
-        }</div>
+        this.state.persons.map((p, index) =>
+
+          <Person
+            key={index.toString()}
+            name={p.name} age={p.age}
+            changed={this.nameChangeHandler}
+            click={() => this.deletePersonHandler(index)}
+          />
+        )
+
+      }</div>
     }
-    
+
     return (
       <div className="App">
-        
+
         <h1>Hi, I'm a React App</h1>
-        
+
         <button
           style={style}
           onClick={this.togglePersonsHandler}>
           Show Persons
         </button>
-        
+
         <Boss power='strong enough' age='250'>Behold!!!</Boss>
-        
-        { persons }
-        
+
+        {persons}
+
       </div>
     )
   }
