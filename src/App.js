@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './App.css'
+import Radium, { StyleRoot } from 'radium'
 
 import Person from './Person/Person'
 import Boss from './Person/Boss'
@@ -53,16 +54,27 @@ class App extends Component {
   render() {
 
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'orange',
+        color: 'black'
+      }
     }
 
     let persons = null
 
     if (this.state.showPersons) {
+      
+      style.backgroundColor = 'red'
+      style[':hover'] = {
+        backgroundColor: 'blue',
+        color: 'yellow'
+      }
 
       persons = <div>{
 
@@ -78,8 +90,29 @@ class App extends Component {
 
       }</div>
     }
+    
+    let classes = []
+    let pInfo = 'Enough persons or not???'
+    
+    let count = this.state.persons.length
+    
+    if (count < 3) {
+      
+      classes.push('red')
+    }
+    
+    if (count < 2) {
+      classes.push('bold')
+    }
+    
+    if (count < 1) {
+      classes.push('blink')
+      pInfo = 'There is no Persons anymore!!!!!!!!!!'
+    }
+    
 
     return (
+      <StyleRoot>
       <div className="App">
 
         <h1>Hi, I'm a React App</h1>
@@ -89,14 +122,17 @@ class App extends Component {
           onClick={this.togglePersonsHandler}>
           Show Persons
         </button>
+        
+        <p className={classes.join(' ')} >{ pInfo }</p>
 
         <Boss power='strong enough' age='250'>Behold!!!</Boss>
 
         {persons}
 
       </div>
+      </StyleRoot>
     )
   }
 }
 
-export default App
+export default Radium(App)
