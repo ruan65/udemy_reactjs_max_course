@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './App.css'
-import Radium, { StyleRoot } from 'radium'
 
 import Person from './Person/Person'
 import Boss from './Person/Boss'
@@ -59,11 +58,7 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'orange',
-        color: 'black'
-      }
+      cursor: 'pointer'
     }
 
     let persons = null
@@ -71,10 +66,6 @@ class App extends Component {
     if (this.state.showPersons) {
       
       style.backgroundColor = 'red'
-      style[':hover'] = {
-        backgroundColor: 'blue',
-        color: 'yellow'
-      }
 
       persons = <div>{
 
@@ -112,7 +103,6 @@ class App extends Component {
     
 
     return (
-      <StyleRoot>
       <div className="App">
 
         <h1>Hi, I'm a React App</h1>
@@ -130,9 +120,8 @@ class App extends Component {
         {persons}
 
       </div>
-      </StyleRoot>
     )
   }
 }
 
-export default Radium(App)
+export default App
