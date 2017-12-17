@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css'
+import classes from './App.css'
 
 import Person from './Person/Person'
 import Boss from './Person/Boss'
@@ -52,20 +52,24 @@ class App extends Component {
 
   render() {
 
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
+    // const style = {
+    //   backgroundColor: 'green',
+    //   color: 'white',
+    //   font: 'inherit',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer'
+    // }
 
     let persons = null
+    
+    var buttonClass = null
 
     if (this.state.showPersons) {
       
-      style.backgroundColor = 'red'
+      // style.backgroundColor = 'red'
+      
+      buttonClass = classes.Red
 
       persons = <div>{
 
@@ -82,38 +86,37 @@ class App extends Component {
       }</div>
     }
     
-    let classes = []
+    let assignedClasses = []
     let pInfo = 'Enough persons or not???'
     
     let count = this.state.persons.length
     
     if (count < 3) {
       
-      classes.push('red')
+      assignedClasses.push(classes.red)
     }
     
     if (count < 2) {
-      classes.push('bold')
+      assignedClasses.push(classes.bold)
     }
     
     if (count < 1) {
-      classes.push('blink')
+      assignedClasses.push(classes.blink)
       pInfo = 'There is no Persons anymore!!!!!!!!!!'
     }
     
 
     return (
-      <div className="App">
+      <div className={classes.App}>
 
         <h1>Hi, I'm a React App</h1>
 
-        <button
-          style={style}
+        <button className={buttonClass}
           onClick={this.togglePersonsHandler}>
           Show Persons
         </button>
         
-        <p className={classes.join(' ')} >{ pInfo }</p>
+        <p className={assignedClasses.join(' ')} >{ pInfo }</p>
 
         <Boss power='strong enough' age='250'>Behold!!!</Boss>
 
