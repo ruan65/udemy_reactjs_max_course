@@ -6,7 +6,7 @@ const person = (props) => {
   
   const style = {
     '@media (min-width: 500px)': {
-      width: '400px'
+      width: '450px'
     },
     color: 'sienna'
   }
