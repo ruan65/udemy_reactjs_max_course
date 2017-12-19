@@ -32,7 +32,7 @@ const cockpit = (props) => {
   }
 
   return <div>
-    <h1>Hi, I'm a React App</h1>
+    <h1>{props.title}</h1>
 
     <button className={buttonClass}
             onClick={props.clicked}>
