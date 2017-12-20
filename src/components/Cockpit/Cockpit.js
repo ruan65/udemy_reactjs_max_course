@@ -1,6 +1,7 @@
 import React from 'react'
 import Boss from '../Persons/Person/Boss'
 import classes from '../../containers/App.css'
+import Aux from '../hoc/Aux'
 
 const cockpit = (props) => {
 
@@ -31,7 +32,7 @@ const cockpit = (props) => {
     pInfo = 'There is no Persons anymore!!!!!!!!!!'
   }
 
-  return <div>
+  return <Aux>
     <h1>{props.title}</h1>
 
     <button className={buttonClass}
@@ -42,7 +43,7 @@ const cockpit = (props) => {
     <p className={assignedClasses.join(' ')}>{pInfo}</p>
 
     <Boss power='strong enough' age='250'>Behold!!!</Boss>
-  </div>
+  </Aux>
 }
 
 export default cockpit
