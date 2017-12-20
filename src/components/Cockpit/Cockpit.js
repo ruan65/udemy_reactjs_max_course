@@ -33,7 +33,7 @@ const cockpit = (props) => {
   }
 
   return <Aux>
-    <h1>{props.title}</h1>
+    <h1>{props.title} {props.count}</h1>
 
     <button className={buttonClass}
             onClick={props.clicked}>

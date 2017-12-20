@@ -16,13 +16,22 @@ class App extends Component {
         {id: 'dscdscs3', name: 'Zinatulla', age: 32},
         {id: 'vfvedd4', name: 'Zinacrone', age: 31}
       ],
-      showPersons: false
+      showPersons: false,
+      toggleClicked: 0
     }
   }
 
   togglePersonsHandler = () => {
 
-    this.setState({showPersons: !this.state.showPersons})
+
+    // this.setState({showPersons: !this.state.showPersons})
+
+    this.setState((prevState, props) => {
+      return {
+        showPersons: !prevState.showPersons,
+        toggleClicked: prevState.toggleClicked + 1
+      }
+    })
   }
 
   nameChangeHandler = (event, id) => {
@@ -43,10 +52,10 @@ class App extends Component {
 
   deletePersonHandler = (index) => {
 
-    const persons = this.state.persons
+    const persons = [...this.state.persons]
 
     persons.splice(index, 1)
-    this.setState(persons)
+    this.setState({persons: persons})
 
   }
 
@@ -66,6 +75,7 @@ class App extends Component {
       <div className={classes.App}>
 
         <Cockpit
+          count={this.state.toggleClicked}
           title={this.props.title}
           state={this.state}
           clicked={this.togglePersonsHandler} />
